@@ -1,0 +1,14 @@
+node_modules/
+build/
+dist/
+.env
+.env.local
+*.log
+
+# ---- Java / Spring Boot ----
+/target/
+*.jar
+*.war
+*.iml
+/.idea/
+*.class
