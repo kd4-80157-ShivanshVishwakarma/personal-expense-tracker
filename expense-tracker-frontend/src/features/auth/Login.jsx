@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import LoginUser from "../../api/LoginApi";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const [loading, setLoading] = useState(false);
@@ -28,14 +29,14 @@ const Login = () => {
       setLoading(true);
       const response = await LoginUser(values);
       if(response.data.success){
-        console.log("Login Success:", response.data);
-        alert("Login Successful!");
+        console.log("Login Success : ", response.data);
+        toast.success("Login Successful!")
         sessionStorage.setItem("userId",response.data.data.userId);
         sessionStorage.setItem("email",response.data.data.email);
       }
     } catch (error) {
-      console.error(error+"This is error message");
-      alert("Login failed");
+      console.error(error+", This is error message");
+      toast.error(error.response.data.message);
     } finally {
       setLoading(false);
     }

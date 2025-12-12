@@ -25,7 +25,7 @@ const PieChartWrapper = () => {
                 }));          
             }
             else{
-                alert(categoryWiseSummaryResponse.data.response); 
+                 toast.error(categoryWiseSummaryResponse.data.message); 
             }
             if(expenseSummaryResponse.data.success){
                 expenseSummaryData = expenseSummaryResponse.data.data.map((data)=>({
@@ -34,7 +34,7 @@ const PieChartWrapper = () => {
                 }));
             }
             else{
-                alert(expenseSummaryResponse.data.response); 
+                 toast.error(expenseSummaryResponse.data.message); 
             }
             
             setCategoryWiseData(categoryData);
@@ -84,7 +84,6 @@ const PieChartWrapper = () => {
 
           </Grid>
         </Box>
-     
   )
 }
 

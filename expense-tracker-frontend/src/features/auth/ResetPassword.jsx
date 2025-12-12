@@ -10,6 +10,7 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import ResetPasswordApi from "../../api/ResetPasswordApi";
 import { useNavigate } from "react-router";
+import { toast } from "react-toastify";
 
 const ResetPassword = () => {
 
@@ -25,15 +26,15 @@ const ResetPassword = () => {
         const response = await ResetPasswordApi(values);
         if(response.data.success){
             navigate("/login");
-            alert("Password Reset Successfully!")
+            toast.success("Password Reset Successfully!");
         }
         else{
             console.log(response);
-            alert("Something went wrong!");
+            toast.error("Something went wrong!");
         }
     } catch (error) {
         console.error(error);
-        alert("Oops! Something went wrong")
+        toast.error(error.response.data.message);
     }
   };
 

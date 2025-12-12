@@ -5,12 +5,15 @@ import {
   MenuItem,
   Button,
   Typography,
-  InputAdornment,Grid
+  InputAdornment,Grid,
+  Alert
 } from "@mui/material";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import {TransactionExpenseApi as transactionExpenseApi,TransactionEarningApi as transactionEarningApi} from "../api/TransactionApi";
 import { uploadImageToCloudinary } from "../services/cloudinaryService";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router";
 
 const expenseCategories = [
   {id:1, value: "FOOD"},
@@ -49,7 +52,8 @@ const EarningsSchema = Yup.object({
 
 const ExpenseForm = () => {
 
-  const[Loading,setLoading] = useState(true);
+  const[loading,setLoading] = useState(true);
+  const navigate = useNavigate();
   
   const handleSubmit= async (values)=>{
     try {
@@ -62,14 +66,14 @@ const ExpenseForm = () => {
       const response = await transactionExpenseApi(values);
       if(response.data.success){
         console.log(response.data);
-        alert(response.data.message);
+        toast.success(response.data.message)
       }
       else{
-        alert(response.data.response);
+        toast.success(response.data.response);
       }
     } catch (error) {
       console.error(error+"This is error message");
-      alert("Something went wrong");
+      toast.success("Something went wrong");
     } finally {
       setLoading(false);
     }
@@ -233,6 +237,28 @@ const ExpenseForm = () => {
               </Button>
             </Box>
 
+            {/* ================= PROMOTIONAL BUDGET ALERT ================= */}
+            <Box sx={{ mb: 3, display: 'flex', justifyContent: 'center' }}>
+              <Alert 
+                severity="info" 
+                variant="outlined" 
+                sx={{ 
+                  width: '100%', 
+                  cursor: 'pointer',
+                  borderStyle: 'dashed',
+                  transition: '0.3s',
+                  '&:hover': { 
+                    bgcolor: 'rgba(2, 136, 209, 0.08)', // subtle blue hover
+                    borderColor: 'info.main',
+                    transform: 'translateY(-2px)' // slight lift effect
+                  }
+                }}
+                onClick={() => navigate('/budget')}
+              >
+                <strong>Smart earners are smart spenders.</strong> 💡 Click here to set a <strong>Budget Limit</strong> and maximize your savings!
+              </Alert>
+            </Box>
+
           
         </Form>
       )}
@@ -248,6 +274,7 @@ const ExpenseForm = () => {
 const EarningsForm = () => {
 
   const[Loading,setLoading] = useState(true);
+  const navigate = useNavigate();
 
   const handleSubmit= async (values)=>{
     try {
@@ -255,14 +282,14 @@ const EarningsForm = () => {
       const response = await transactionEarningApi(values);
       if(response.data.success){
         console.log(response.data);
-        alert(response.data.message);
+         toast.success(response.data.message);
       }
       else{
-        alert(response.data.response);
+         toast.success(response.data.response);
       }
     } catch (error) {
       console.error(error+"This is error message");
-      alert("Something went wrong");
+       toast.success("Something went wrong");
     } finally {
       setLoading(false);
     }
@@ -286,6 +313,7 @@ const EarningsForm = () => {
           <Typography variant="h5" sx={{ mb: 3, display: "flex", justifyContent: "center", fontWeight:700 }}>
             Earning Entry
           </Typography>
+
           <Box sx={{ height: "1px", background: "#e0e0e0", my: 4 }} />
 
           {/* Grid Container starts here */}
@@ -410,6 +438,28 @@ const EarningsForm = () => {
               >
                 Add Earning
               </Button>
+            </Box>
+
+             {/* ================= PROMOTIONAL BUDGET ALERT ================= */}
+            <Box sx={{ mb: 3, display: 'flex', justifyContent: 'center' }}>
+              <Alert 
+                severity="info" 
+                variant="outlined" 
+                sx={{ 
+                  width: '100%', 
+                  cursor: 'pointer',
+                  borderStyle: 'dashed',
+                  transition: '0.3s',
+                  '&:hover': { 
+                    bgcolor: 'rgba(2, 136, 209, 0.08)', // subtle blue hover
+                    borderColor: 'info.main',
+                    transform: 'translateY(-2px)' // slight lift effect
+                  }
+                }}
+                onClick={() => navigate('/budget')}
+              >
+                <strong>Smart earners are smart spenders.</strong> 💡 Click here to set a <strong>Budget Limit</strong> and maximize your savings!
+              </Alert>
             </Box>
 
           

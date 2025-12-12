@@ -10,6 +10,7 @@ import {
 import { Formik } from "formik";
 import * as Yup from "yup";
 import signupUser from "../../api/userApi";
+import { toast } from "react-toastify";
 
 const Signup = () => {
   const [loading, setLoading] = useState(false);
@@ -37,10 +38,10 @@ const Signup = () => {
       setLoading(true);
       const response = await signupUser(values);
       console.log("Signup Success:", response.data);
-      alert("Signup Successful!");
+      toast.success("Signup Successful!");
     } catch (error) {
       console.error(error+"This is error message");
-      alert("Signup failed");
+      toast.error("Signup failed");
     } finally {
       setLoading(false);
     }

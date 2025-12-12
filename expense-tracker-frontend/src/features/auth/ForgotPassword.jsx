@@ -11,6 +11,7 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import {ForgotPasswordApi,OtpApi} from "../../api/ForgotPasswordApi";
 import { useNavigate } from "react-router";
+import { toast } from "react-toastify";
 
 const ForgotPassword = () => {
   const [loading, setLoading] = useState(false);
@@ -47,11 +48,11 @@ const ForgotPassword = () => {
             setLoading(false);
             setOtpSent(true);
             setTimer(60);
-            alert("OTP sent to your email!");
+            toast.success("OTP sent to your email!");
         }
         else{
           setLoading(false);
-            alert("Wront Email ID, Please Try again!");
+            toast.success("Wront Email ID, Please Try again!")
         }
       
     } else {
@@ -61,13 +62,13 @@ const ForgotPassword = () => {
             if(response.data.success || response.data){
               navigate("/resetpass");
             }
-            else alert("You entered a wrong OTP");    
+            else toast.warning("You entered a wrong OTP");  
         }
     }
     catch (error) {
       setLoading(false);
         console.error("ERROR:", error);
-        alert("Something went wrong.");
+        toast.error("Something went wrong.")
     }
   };
 

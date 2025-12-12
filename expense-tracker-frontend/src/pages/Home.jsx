@@ -1,4 +1,5 @@
 import { Box, Typography, Button, Card,CardContent, Grid } from "@mui/material";
+import { Link } from "react-router";
 
 
 const Home =()=> {
@@ -33,7 +34,7 @@ const Home =()=> {
             of your financial life — all in one clean, simple dashboard.
           </Typography>
 
-          <Button variant="contained" size="large" color="success">
+          <Button variant="contained" size="large" color="success" component={Link} to='/dashboard'>
             Start Tracking → 
           </Button>
         </Grid>

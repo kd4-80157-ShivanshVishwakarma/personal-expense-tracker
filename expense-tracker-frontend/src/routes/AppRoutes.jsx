@@ -11,13 +11,17 @@ import UpdateProfile from "../pages/Profile";
 import Dashboard from "../pages/Dashboard";
 import Transaction from "../pages/Transaction";
 import Test from "../pages/Test";
-import CloudinaryTest from "../pages/Test";
+// import CloudinaryTest from "../pages/Test";
+import BudgetAlert from "../features/feature-pages/BudgetAlert";
+import GlobalToast from "../components/GlobalToast";
 
 const AppRoutes = () => {
   return (
     <>
     <BrowserRouter>
+
     <Navbar/>
+    <GlobalToast/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<Auth flag={false}/>} />
@@ -27,6 +31,7 @@ const AppRoutes = () => {
         <Route path="/profile" element={<UpdateProfile />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/transaction" element={<Transaction />} />
+        <Route path="/budget" element={<BudgetAlert />} />
       </Routes>
     <Footer/>
     </BrowserRouter>

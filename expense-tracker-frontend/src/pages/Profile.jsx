@@ -14,6 +14,7 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import {ProfileGetApi,ProfileUpdateApi} from "../api/ProfileApi";
 import ChangePassword from "../features/auth/ChangePassword";
+import { toast } from "react-toastify";
 
 const UpdateProfile = () => {
   const [openDeactivate, setOpenDeactivate] = useState(false);
@@ -25,12 +26,12 @@ const UpdateProfile = () => {
         const response = await ProfileUpdateApi(values);
         if(response.data.success){
             console.log(response.data);
-            alert("Profile has been updated!");
+            toast.success("Profile has been updated!");
             setIsEditing(false);
         }
       } catch (error) {
         console.error(error);
-        
+        toast.error(error.response.data.message);
       }
     };
   
@@ -41,14 +42,13 @@ const UpdateProfile = () => {
         console.log(response);
         if(response.data.success){
           setProfileData(response.data.data);
-        }alert("Something went wrong!")
+        }
+        else toast.error(response.data.message)
       } catch (error) {
         console.error(error);
-        alert("Oops! An error occured!")
+        toast.error(error.response.data.message)
       }
-      
     };
-
     fetchUser();
   }, []);
 

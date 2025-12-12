@@ -11,6 +11,7 @@ import {
 import { Formik } from "formik";
 import * as Yup from "yup";
 import changePasswordApi from "../../api/ChangePasswordApi";
+import { toast } from "react-toastify";
 
 const ChangePassword = () => {
   const [showOld, setShowOld] = useState(false);
@@ -28,13 +29,13 @@ const ChangePassword = () => {
         const response = await changePasswordApi(values);
         if(response.data.success){
             console.log(response.data);
-            alert(response.data.message);
+            toast.success(response.data.message);
             resetForm();
         }
-        else alert(response.data.message);
+        else toast.error(response.data.message);
       } catch (error) {
         console.error(error);
-        alert("Something went wrong");
+        toast.error(error.response.data.message)
       }
   };
 
