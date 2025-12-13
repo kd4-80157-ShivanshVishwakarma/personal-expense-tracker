@@ -44,9 +44,9 @@ public class AccountController {
         return ResponseEntity.internalServerError().body(response);
     }
 
-    @PutMapping("/validate-otp/{userId}")
-    public ResponseEntity<?> validateOtp(@PathVariable Long userId,@RequestBody OtpDTO otpDTO) {
-        boolean response = otpDetailService.verifyOtp(userId,otpDTO.getOtp());
+    @PostMapping("/validate-otp")
+    public ResponseEntity<?> validateOtp(@RequestBody OtpDTO otpDTO) {
+        boolean response = otpDetailService.verifyOtp(otpDTO.getOtp(),otpDTO.getEmail());
         if(response){
             return ResponseEntity.ok(response);
         }

@@ -10,9 +10,9 @@ public interface OtpDetailRepository extends JpaRepository<OTPDetails, Long> {
     @Query("""
                      select case when count(od) > 0 then true else false end
                      from OTPDetails od
-                     where od.user.id = :userId
+                     where od.user.email = :email
                      and od.otpCode = :otp
                      and CURRENT_TIMESTAMP <= od.validTill
            """)
-    boolean validateOtp(@Param("userId") Long userId,@Param("otp") String otp);
+    boolean validateOtp(@Param("otp") String otp,@Param("email")  String email);
 }

@@ -9,7 +9,6 @@ import {
   Container,
   Avatar,
 } from "@mui/material";
-import axios from "axios";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import expenseSummary from "../api/DashboardApi";
@@ -53,8 +52,8 @@ const ExpenseSummary = () => {
       setLoading(true);
       const response = await expenseSummary();
       if (response.data.success) {
-        await summarySchema.validate(response.data.data); // validate using Yup
-        setInitialValues(response.data.data); // store in formik
+         summarySchema.validate(response.data.data); // validate using Yup
+         setInitialValues(response.data.data); // store in formik
       }
     } catch (err) {
       console.error("ERROR:", err);

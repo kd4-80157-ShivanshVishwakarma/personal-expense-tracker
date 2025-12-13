@@ -14,6 +14,7 @@ import Test from "../pages/Test";
 // import CloudinaryTest from "../pages/Test";
 import BudgetAlert from "../features/feature-pages/BudgetAlert";
 import GlobalToast from "../components/GlobalToast";
+import PrivateRoute from "../components/PrivateRoute";
 
 const AppRoutes = () => {
   return (
@@ -28,10 +29,12 @@ const AppRoutes = () => {
         <Route path="/login" element={<Auth flag={true}/>} />
         <Route path="/forgotpass" element={<ForgotPassword />} />
         <Route path="/resetpass" element={<ResetPassword />} />
-        <Route path="/profile" element={<UpdateProfile />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/transaction" element={<Transaction />} />
-        <Route path="/budget" element={<BudgetAlert />} />
+        <Route element={<PrivateRoute/>}>
+          <Route path="/profile" element={<UpdateProfile />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/transaction" element={<Transaction />} />
+          <Route path="/budget" element={<BudgetAlert />} />
+        </Route>  
       </Routes>
     <Footer/>
     </BrowserRouter>

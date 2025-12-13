@@ -1,68 +1,104 @@
-import { useState, useEffect } from "react";
+
+import { useEffect } from "react";
 import {
   Box,
   Typography,
   Button,
   TextField,
-  Link
 } from "@mui/material";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import ResetPasswordApi from "../../api/ResetPasswordApi";
-import { useNavigate } from "react-router";
+import { useNavigate, useLocation } from "react-router-dom"; 
 import { toast } from "react-toastify";
 
 const ResetPassword = () => {
-
-    const navigate = useNavigate();
+  const navigate = useNavigate();
+  const location = useLocation();
   
+  // Retrieve the email passed from the Previous Page (Forgot Password)
+  const email = location.state?.email;
+
+  // Safety Check: If user tries to access this page directly without an email, kick them back
+  useEffect(() => {
+    if (!email) {
+        toast.error("Session expired. Please try again.");
+        navigate("/forgotpass");
+    }
+  }, [email, navigate]);
+
   const validationSchema = Yup.object({
-    password: Yup.string().min(6).required("Password required"),
-    confirmPassword:Yup.string().min(6).required("Confirm Password required").oneOf([Yup.ref('password'), null], 'Passwords must match')
+    password: Yup.string().min(6, "Must be at least 6 characters").required("Password required"),
+    confirmPassword: Yup.string()
+      .oneOf([Yup.ref('password'), null], 'Passwords must match')
+      .required("Confirm Password required")
   });
 
   const handleSubmit = async (values) => {
     try {
-        const response = await ResetPasswordApi(values);
-        if(response.data.success){
-            navigate("/login");
-            toast.success("Password Reset Successfully!");
-        }
-        else{
-            console.log(response);
-            toast.error("Something went wrong!");
-        }
+      // We need to send the Email + New Password to the backend
+      const payload = {
+        email: email, 
+        password: values.password,
+        confirmPassword: values.confirmPassword
+      };
+
+      const response = await ResetPasswordApi(payload);
+      
+      if (response.data.success) {
+        toast.success("Password Reset Successfully!");
+        navigate("/login");
+      } else {
+        toast.error("Failed to reset password. Try again.");
+      }
     } catch (error) {
-        console.error(error);
-        toast.error(error.response.data.message);
+      console.error(error);
+      const errorMsg = error.response?.data?.message || "Something went wrong";
+      toast.error(errorMsg);
     }
   };
 
   return (
-    <Box sx={{display:"flex",
-          justifyContent:"center"}}>
     <Box
       sx={{
-          width: { xs: "35%", md: "40%" },
-          bgcolor: "#fff",
-          boxShadow: "0px 10px 30px rgba(0,0,0,0.1)",
-          borderRadius: "16px",
-          overflow: "hidden",
-          transition: "0.5s",
-          display:"flex",
-          justifyContent:"center",
-          my:5
-        }}
+        minHeight: {xs:"60vh", md:"90vh"},
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        bgcolor: "#ffffff", 
+        p: 2
+      }}
     >
-      <Box sx={{ width: "100%", maxWidth: 450, textAlign: "center", p: 4 }}>
+      <Box
+        sx={{
+          width: { xs: "100%", sm: "80%", md: "450px" }, 
+          maxWidth: "450px",
+          bgcolor: "#fff",
+          boxShadow: "0px 10px 30px rgba(0,0,0,0.08)",
+          borderRadius: "24px",
+          overflow: "hidden",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          p: { xs: 3, md: 8 }, 
+        }}
+      >
+        <Box sx={{ mb: 2 }}>
+            <img 
+                src="https://cdn-icons-png.flaticon.com/512/3064/3064197.png" 
+                width="70" 
+                alt="Reset Password"
+                style={{ opacity: 0.8 }} 
+            />
+        </Box>
 
         {/* Headings */}
-        <Typography variant="h5" sx={{ fontWeight: 700, mb: 1 }}>
-          Reset your password
+        <Typography variant="h5" sx={{ fontWeight: 800, mb: 1, color: "#333", textAlign: 'center' }}>
+          Reset Password
         </Typography>
 
-        <Typography sx={{ color: "#555", mb: 4 }}>
-          Enter new password to recover your account
+        <Typography sx={{ color: "#666", mb: 4, textAlign: 'center', fontSize: "0.9rem" }}>
+          Create a strong password for <strong>{email}</strong>
         </Typography>
 
         <Formik
@@ -77,45 +113,54 @@ const ResetPassword = () => {
             handleChange,
             handleSubmit,
           }) => (
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} style={{ width: "100%" }}>
               
               <TextField
-                size="small"
                 fullWidth
-                label="Password"
+                label="New Password"
                 name="password"
+                type="password" // IMPORTANT: Hides text
                 value={values.password}
                 onChange={handleChange}
                 error={touched.password && Boolean(errors.password)}
                 helperText={touched.password && errors.password}
-                sx={{ mb: 2 }}
+                sx={{ mb: 3 }}
+                InputProps={{ style: { borderRadius: "12px" } }}
               />
 
-                <TextField
-                  size="small"
-                  fullWidth
-                  label="Confirm Password"
-                  name="confirmPassword"
-                  value={values.confirmPassword}
-                  onChange={handleChange}
-                  error={touched.confirmPassword && Boolean(errors.confirmPassword)}
-                  helperText={touched.confirmPassword && errors.confirmPassword}
-                  sx={{ mb: 2 }}
-                />
+              <TextField
+                fullWidth
+                label="Confirm Password"
+                name="confirmPassword"
+                type="password" // IMPORTANT: Hides text
+                value={values.confirmPassword}
+                onChange={handleChange}
+                error={touched.confirmPassword && Boolean(errors.confirmPassword)}
+                helperText={touched.confirmPassword && errors.confirmPassword}
+                sx={{ mb: 3 }}
+                InputProps={{ style: { borderRadius: "12px" } }}
+              />
 
               <Button
                 type="submit"
                 variant="contained"
-                color="success"
-                sx={{ py: 1.2, borderRadius: "30px", mb: 2,width:"180px" }}>
-                Submit
+                fullWidth
+                sx={{ 
+                    py: 1.5, 
+                    borderRadius: "12px", 
+                    fontWeight: "bold",
+                    textTransform: "none",
+                    bgcolor: "#00A884",
+                    "&:hover": { bgcolor: "#008f70" }
+                }}
+              >
+                Reset Password
               </Button>
 
             </form>
           )}
         </Formik>
       </Box>
-    </Box>
     </Box>
   );
 };

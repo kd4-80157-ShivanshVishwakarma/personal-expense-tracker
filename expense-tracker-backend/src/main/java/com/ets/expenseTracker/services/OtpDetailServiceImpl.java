@@ -32,9 +32,9 @@ public class OtpDetailServiceImpl implements OtpDetailService{
     }
 
     @Override
-    public boolean verifyOtp(Long userId, String otp) {
+    public boolean verifyOtp( String otp,String email) {
         try{
-            boolean flag = otpRepo.validateOtp(userId,otp);
+            boolean flag = otpRepo.validateOtp(otp,email);
             if(flag){
                 return true;
             }

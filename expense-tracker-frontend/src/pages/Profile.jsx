@@ -232,9 +232,19 @@ const UpdateProfile = () => {
                         type="submit"
                         variant="contained"
                         color="success"
-                        sx={{ mt: 3, width: "180px", borderRadius: "30px" }}
+                        sx={{ mt: 3, width: "150px", borderRadius: "30px",fontSize: "12px",fontWeight: 600,}}
                       >
                         Save Changes
+                      </Button>
+
+                      <Button
+                        variant="contained"
+                        color="error"
+                        sx={{ mt: 3, width: "120px", borderRadius: "30px",fontWeight: 600,
+                          fontSize: "12px",ml:2 }}
+                        onClick={() => setIsEditing(false)}
+                      >
+                        Cancel
                       </Button>
                     </Box>
                   )}
@@ -243,8 +253,8 @@ const UpdateProfile = () => {
                       <Button
                         variant="contained"
                         color="success"
-                        sx={{ mt: 3, width: "160px", borderRadius: "30px",fontWeight: 600,
-                fontSize: "12px", }}
+                        sx={{ mt: 3, width: "140px", borderRadius: "30px",fontWeight: 600,
+                          fontSize: "12px", }}
                         onClick={() => setIsEditing(true)}
                       >
                         Edit Profile
@@ -274,7 +284,7 @@ const UpdateProfile = () => {
         </Box>
       </Card>
 
-      {/* DEACTIVATE DIALOG */}
+      {/* DEACTIVATE DIALOG
       <Dialog open={openDeactivate} onClose={() => setOpenDeactivate(false)}>
         <DialogContent sx={{ textAlign: "center", p: 4 }}>
           <Typography variant="h6" sx={{ mb: 2 }}>
@@ -297,7 +307,7 @@ const UpdateProfile = () => {
             Deactivate
           </Button>
         </DialogActions>
-      </Dialog>
+      </Dialog> */}
     </Box>
   );
 };

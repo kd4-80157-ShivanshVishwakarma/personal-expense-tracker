@@ -1,14 +1,15 @@
 import axios from 'axios';
 
-const createBudgetUrl = "http://localhost:8080/api/budget/create-budget/13";
-const fetchBudgetUrl = "http://localhost:8080/api/budget/budgets/13";
-
 const CreateBudgetAlertApi = async (user)=> {
+    const userId = sessionStorage.getItem("userId");
+    const createBudgetUrl = "http://localhost:8080/api/budget/create-budget/"+userId;
     const response = await axios.post(createBudgetUrl,user);
     return response;
 }
 
 const FetchBudgetsApi = async (user)=> {
+    const userId = sessionStorage.getItem("userId");
+    const fetchBudgetUrl = "http://localhost:8080/api/budget/budgets/"+userId;
     const response = await axios.get(fetchBudgetUrl);
     return response;
 }

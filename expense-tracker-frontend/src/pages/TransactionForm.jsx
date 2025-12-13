@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   TextField,
@@ -6,8 +6,12 @@ import {
   Button,
   Typography,
   InputAdornment,Grid,
-  Alert
+  Alert,
+  Collapse,
+  IconButton,
+  AlertTitle
 } from "@mui/material";
+import CloseIcon from '@mui/icons-material/Close';
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import {TransactionExpenseApi as transactionExpenseApi,TransactionEarningApi as transactionEarningApi} from "../api/TransactionApi";
@@ -54,8 +58,19 @@ const ExpenseForm = () => {
 
   const[loading,setLoading] = useState(true);
   const navigate = useNavigate();
+  const [budgetWarning, setBudgetWarning] = useState(null);
+
+  useEffect(() => {
+      if (budgetWarning) {
+        const timer = setTimeout(() => {
+          setBudgetWarning(null);
+        }, 8000);
+
+        return () => clearTimeout(timer);
+      }
+    }, [budgetWarning]);
   
-  const handleSubmit= async (values)=>{
+  const handleSubmit= async (values,{resetForm})=>{
     try {
       setLoading(true);
       let uploadImage = null;
@@ -66,6 +81,20 @@ const ExpenseForm = () => {
       const response = await transactionExpenseApi(values);
       if(response.data.success){
         console.log(response.data);
+        resetForm();
+
+        const data = response.data.data;
+        
+        if (data && data.usagePercentage >= 80) {
+            setBudgetWarning({
+                severity: data.usagePercentage >= 100 ? "error" : "warning", 
+                title: data.usagePercentage >= 100 ? "Budget Limit Exceeded! 🚨" : "Approaching Limit ",
+                message: data.alertMessage || `You have used ${data.usagePercentage}% of your budget.`
+            });
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
         toast.success(response.data.message)
       }
       else{
@@ -97,6 +126,34 @@ const ExpenseForm = () => {
           <Typography variant="h5" sx={{ mb: 3, display: "flex", justifyContent: "center", fontWeight:700 }}>
             Expense Entry
           </Typography>
+
+          {/* ================= 3. UI: DYNAMIC BUDGET WARNING ================= */}
+          {/* This only appears if the user crosses 80% or 100% */}
+          <Collapse in={Boolean(budgetWarning)}>
+            <Box sx={{ mb: 3 }}>
+                <Alert
+                    severity={budgetWarning?.severity || "info"}
+                    variant="standard" 
+                    action={
+                        <IconButton
+                            aria-label="close"
+                            color="inherit"
+                            size="small"
+                            onClick={() => setBudgetWarning(null)}
+                        >
+                            <CloseIcon fontSize="inherit" />
+                        </IconButton>
+                    }
+                    sx={{ borderRadius: 2, boxShadow: 3 }}
+                >
+                    <AlertTitle sx={{ fontWeight: 'bold' }}>
+                        {budgetWarning?.title}
+                    </AlertTitle>
+                    {budgetWarning?.message}
+                </Alert>
+            </Box>
+          </Collapse>
+
           <Box sx={{ height: "1px", background: "#e0e0e0", my: 4 }} />
 
           {/* Grid Container starts here */}
@@ -276,13 +333,14 @@ const EarningsForm = () => {
   const[Loading,setLoading] = useState(true);
   const navigate = useNavigate();
 
-  const handleSubmit= async (values)=>{
+  const handleSubmit= async (values,{resetForm})=>{
     try {
       setLoading(true);
       const response = await transactionEarningApi(values);
       if(response.data.success){
         console.log(response.data);
          toast.success(response.data.message);
+         resetForm();
       }
       else{
          toast.success(response.data.response);
@@ -352,7 +410,7 @@ const EarningsForm = () => {
                 helperText={touched.categoryId && errors.categoryId}
                 sx={{width:"16rem",'& .MuiFilledInput-root': {
                         backgroundColor: '#f9f1f19c',
-                        }}}
+                }}}
               >
 
                 {earningCategories.map((d) => (
@@ -382,7 +440,7 @@ const EarningsForm = () => {
             {/* ROW 3: Amount & Date */}
             <Grid item xs={12} sm={6}>
               <TextField
-              required
+                required
                 fullWidth
                 size="small"
                 variant="filled"
@@ -461,12 +519,9 @@ const EarningsForm = () => {
                 <strong>Smart earners are smart spenders.</strong> 💡 Click here to set a <strong>Budget Limit</strong> and maximize your savings!
               </Alert>
             </Box>
-
-          
         </Form>
       )}
     </Formik>
   );
 };
-
 export {ExpenseForm,EarningsForm};

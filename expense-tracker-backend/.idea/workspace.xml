@@ -6,9 +6,18 @@
   <component name="ChangeListManager">
     <list default="true" id="db8bf483-a383-4511-86aa-75acaafb1ab4" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../expense-tracker-frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../expense-tracker-frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ets/expenseTracker/controllers/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ets/expenseTracker/controllers/AccountController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ets/expenseTracker/controllers/TransactionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ets/expenseTracker/controllers/TransactionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ets/expenseTracker/dtos/OtpDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ets/expenseTracker/dtos/OtpDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ets/expenseTracker/dtos/UserAuthResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ets/expenseTracker/dtos/UserAuthResponseDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ets/expenseTracker/repositories/OtpDetailRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ets/expenseTracker/repositories/OtpDetailRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ets/expenseTracker/services/AccountServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ets/expenseTracker/services/AccountServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ets/expenseTracker/services/OtpDetailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ets/expenseTracker/services/OtpDetailService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ets/expenseTracker/services/OtpDetailServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ets/expenseTracker/services/OtpDetailServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ets/expenseTracker/services/TransactionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ets/expenseTracker/services/TransactionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ets/expenseTracker/services/TransactionServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ets/expenseTracker/services/TransactionServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../expense-tracker-frontend/src/api/ForgotPasswordApi.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../expense-tracker-frontend/src/api/ForgotPasswordApi.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../expense-tracker-frontend/src/routes/AppRoutes.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../expense-tracker-frontend/src/routes/AppRoutes.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../expense-tracker-frontend/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../expense-tracker-frontend/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,7 +56,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Application.ExpenseTrackerApplication.executor": "Run",
+    "Application.ExpenseTrackerApplication.executor": "Debug",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
@@ -125,41 +134,6 @@
           <option name="timeStamp" value="16" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/ets/expenseTracker/services/TransactionServiceImpl.java</url>
-          <line>33</line>
-          <option name="timeStamp" value="17" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/ets/expenseTracker/services/TransactionServiceImpl.java</url>
-          <line>34</line>
-          <option name="timeStamp" value="18" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/ets/expenseTracker/services/TransactionServiceImpl.java</url>
-          <line>37</line>
-          <option name="timeStamp" value="20" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/ets/expenseTracker/services/TransactionServiceImpl.java</url>
-          <line>61</line>
-          <option name="timeStamp" value="21" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/ets/expenseTracker/services/TransactionServiceImpl.java</url>
-          <line>53</line>
-          <option name="timeStamp" value="22" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/ets/expenseTracker/services/TransactionServiceImpl.java</url>
-          <line>48</line>
-          <option name="timeStamp" value="23" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/ets/expenseTracker/services/AccountServiceImpl.java</url>
-          <line>64</line>
-          <option name="timeStamp" value="24" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/ets/expenseTracker/services/BudgetServiceImpl.java</url>
           <line>80</line>
           <option name="timeStamp" value="29" />
@@ -173,6 +147,16 @@
           <url>file://$PROJECT_DIR$/src/main/java/com/ets/expenseTracker/services/BudgetServiceImpl.java</url>
           <line>83</line>
           <option name="timeStamp" value="31" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/ets/expenseTracker/controllers/AccountController.java</url>
+          <line>37</line>
+          <option name="timeStamp" value="34" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/ets/expenseTracker/services/OtpDetailServiceImpl.java</url>
+          <line>35</line>
+          <option name="timeStamp" value="36" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

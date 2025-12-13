@@ -49,7 +49,7 @@ public class AccountServiceImpl implements AccountService {
         try{
             User user = accRepository.findByEmail(request.getEmail());
             if (request.getPassword().equals(user.getPassword())) {
-                return new ResponseDTO<>(true, "Login Successful", new UserAuthResponseDTO(user.getId(),user.getEmail()));
+                return new ResponseDTO<>(true, "Login Successful", new UserAuthResponseDTO(user.getId(),user.getEmail(),user.getFirstName()));
             }else{
                 return new ResponseDTO<>(false,"Login Failed",null);
             }

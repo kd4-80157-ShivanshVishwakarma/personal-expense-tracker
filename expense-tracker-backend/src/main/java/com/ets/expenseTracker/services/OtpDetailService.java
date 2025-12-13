@@ -6,5 +6,5 @@ import com.ets.expenseTracker.entities.*;
 public interface OtpDetailService {
 
     boolean saveOtp(User user, String otp);
-    boolean verifyOtp(Long userId, String otp);
+    boolean verifyOtp(String otp,String email);
 }

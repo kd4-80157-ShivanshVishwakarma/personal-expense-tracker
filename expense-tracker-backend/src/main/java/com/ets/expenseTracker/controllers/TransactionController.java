@@ -20,7 +20,7 @@ public class TransactionController {
 
     @PostMapping("/expense")
     public ResponseEntity<?> expenseEntry(@RequestBody ExpenseRequestDTO request, @RequestParam Long userId, @RequestParam TransactionType type) {
-        ResponseGenericDTO  response = transactionService.createExpenseTransaction(request,userId,type);
+        ResponseDTO<BudgetLimitUsageDTO>  response = transactionService.createExpenseTransaction(request,userId,type);
         if(response.isSuccess()){
             return ResponseEntity.ok(response);
         }
