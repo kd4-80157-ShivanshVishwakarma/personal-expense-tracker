@@ -20,10 +20,11 @@ public class AccountController {
 
     @PostMapping("/signup")
     public ResponseEntity<?> signup(@RequestBody UserDTO request) {
-        if(accountService.createUser(request).isSuccess()){
-            return ResponseEntity.ok("Signup successful");
+        ResponseGenericDTO response = accountService.createUser(request);
+        if(response.isSuccess()){
+            return ResponseEntity.ok(response);
         }
-        return ResponseEntity.internalServerError().build();
+        return ResponseEntity.internalServerError().body(response);
     }
 
     @PostMapping("/login")

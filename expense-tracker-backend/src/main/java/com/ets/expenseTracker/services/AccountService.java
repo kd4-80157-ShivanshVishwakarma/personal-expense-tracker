@@ -4,7 +4,7 @@ import com.ets.expenseTracker.dtos.*;
 import com.ets.expenseTracker.entities.User;
 
 public interface AccountService {
-    ResponseDTO<User> createUser(UserDTO request);
+    ResponseGenericDTO createUser(UserDTO request);
     ResponseDTO<UserAuthResponseDTO> login(LoginDTO request);
     ResponseDTO<Object> forgotPassword(String request);
     ResponseDTO<User> resetPassword(ResetPasswordDTO request,Long id);

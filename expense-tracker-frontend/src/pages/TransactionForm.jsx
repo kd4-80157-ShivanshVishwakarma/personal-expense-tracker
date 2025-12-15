@@ -106,7 +106,7 @@ const ExpenseForm = () => {
       }
     } catch (error) {
       console.error(error+"This is error message");
-      toast.success("Something went wrong");
+      toast.error("Something went wrong");
     } finally {
       setLoading(false);
     }

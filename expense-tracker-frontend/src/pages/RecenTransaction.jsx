@@ -139,8 +139,8 @@ const RecenTransaction = () => {
                                         </Box>
                                     </TableCell>
                                     <TableCell sx={{ maxWidth: 200 }}>
-                                        <Typography variant="body2" noWrap title={row.description}>
-                                            {row.description}
+                                        <Typography variant="body2"sx={{fontStyle:row.description ? 'normal': 'italic'}} noWrap title={row.description}>
+                                            {row.description ? row.description : "No Description"}
                                         </Typography>
                                     </TableCell>
                                     <TableCell align='center'>

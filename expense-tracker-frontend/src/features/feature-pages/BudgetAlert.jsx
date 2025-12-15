@@ -365,7 +365,6 @@ const BudgetAlert = () => {
         </TableContainer>
         </Paper>
 
-        {/* ===================== INFO ===================== */}
         <Alert severity="info" icon={<TrendingUp />}>
         You will be notified when usage reaches to the configured limit.
         </Alert>

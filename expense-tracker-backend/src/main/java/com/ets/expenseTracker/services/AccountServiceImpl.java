@@ -28,18 +28,18 @@ public class AccountServiceImpl implements AccountService {
     private ModelMapper modelMapper;
 
     @Override
-    public ResponseDTO<User> createUser(UserDTO request) {
+    public ResponseGenericDTO createUser(UserDTO request) {
         try{
             if (!(accRepository.existsByEmail(request.getEmail()))) {
                 User usr = accRepository.save(modelMapper.map(request, User.class));
                 if(usr!=null){
-                    return new ResponseDTO<>(true,"Sign up successful!",usr);
+                    return new ResponseGenericDTO(true,"Signup successful!");
                 }
-                return new ResponseDTO<>(false,"Internal Server Error",null);
+                return new ResponseGenericDTO(false,"Signup failed!");
             }
-            return null;
+            return new ResponseGenericDTO(false,"User already exists!");
         }catch(RuntimeException e){
-            return new ResponseDTO<>(false,"Internal Server Error",null);
+            return new ResponseGenericDTO(false,"Internal Server Error");
         }
     }
 

@@ -14,9 +14,11 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import dayjs from 'dayjs';
+import { useNavigate } from "react-router";
 
 const Signup = () => {
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const initialValues = {
     firstName: "",
@@ -39,8 +41,15 @@ const Signup = () => {
   const handleSubmit = async (values) => {
     try {
       setLoading(true);
-      await signupUser(values);
-      toast.success("Signup Successful!");
+      const response = await signupUser(values);
+      if(response.data.success){
+        navigate('/login');
+        toast.success("Signup Successful!");
+      }
+      else{
+        toast.error(response.data.message);
+      }
+      
     } catch (error) {
       toast.error("Signup failed");
     } finally {
