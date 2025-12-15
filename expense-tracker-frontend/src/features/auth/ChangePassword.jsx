@@ -91,7 +91,7 @@ const ChangePassword = () => {
                 onChange={handleChange}
                 error={touched.oldPassword && Boolean(errors.oldPassword)}
                 helperText={touched.oldPassword && errors.oldPassword}
-                sx={{ mb: 3, maxWidth: "350px" }}  // 🔥 FIXED WIDTH CENTERED
+                sx={{ mb: 3, maxWidth: "350px" }}  
                 InputProps={{
                 sx: { borderRadius: 2 },
                 endAdornment: (

@@ -1,47 +1,60 @@
-import { Box, Paper, Typography } from "@mui/material";
-import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
+
+import { 
+  Box, 
+  Paper, 
+  Typography, 
+  useTheme, 
+  useMediaQuery,
+  IconButton, 
+  Tooltip as MuiTooltip 
+} from "@mui/material";
+import { InfoOutlined } from "@mui/icons-material"; 
+import { 
+  PieChart, 
+  Pie, 
+  Cell, 
+  Tooltip as RechartsTooltip, 
+  Legend, 
+  ResponsiveContainer 
+} from "recharts";
 
 const COLORS = [
-  "#00A884", // Green
-  "#FF6F6F", // Red
-  "#FFC107", // Yellow
-  "#4C6EF5", // Blue
-  "#A66BFF", // Purple
-  "#FF8E72",
-  "#b8cc8cff", // Orange
+  "#00A884", "#FF6F6F", "#FFC107", "#4C6EF5", 
+  "#A66BFF", "#FF8E72", "#b8cc8cff"
 ];
 
-const CustomTooltip = ({ active, payload, label }) => {
+const CustomTooltip = ({ active, payload }) => {
   if (!active || !payload || payload.length === 0) return null;
-
   return (
     <Paper
       elevation={4}
-      sx={{
-        px: 2,
-        py: 1,
-        borderRadius: 2,
-        background: "#fff",
-      }}
+      sx={{ px: 2, py: 1, borderRadius: 2, background: "#fff", border: "1px solid #e0e0e0" }}
     >
       <Typography sx={{ fontWeight: 600, fontSize: "14px" }}>
         {payload[0].name}
       </Typography>
-
       <Typography sx={{ fontSize: "13px", color: "#555" }}>
-        {payload[0].value}%  
+        {payload[0].value}%
       </Typography>
     </Paper>
   );
 };
 
+const PieChartCard = ({ title, data, padding, description }) => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
-const PieChartCard = ({ title,description, data }) => {
+  const hasData = data && data.length > 0 && data.some(item => item.value > 0);
+
+  const chartData = hasData ? data : [{ name: "None", value: 1 }];
+  const chartColors = hasData ? COLORS : ["#e0e0e0"];
+
   return (
     <Paper
       elevation={3}
       sx={{
-        p: 2,
+        p: { xs: padding, sm: padding, md: 5 },
+        px: { md: 5 + (padding || 0) },
         borderRadius: 5,
         width: "100%",
         minHeight: 350,
@@ -49,44 +62,98 @@ const PieChartCard = ({ title,description, data }) => {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
+        mt: { xs: 5, md: 5, lg: 0 },
+        position: "relative"
       }}
     >
-      <Typography variant="h6" sx={{ fontWeight: 700, mb: 2 }}>
-        {title}
-      </Typography>
-      {/* <Typography variant="body2" sx={{width:'100%',maxWidth: "20%",}}>
-        {description}
-      </Typography> */}
+      <Box 
+        sx={{ 
+          display: 'flex', 
+          alignItems: 'center', 
+          justifyContent: 'center', 
+          mb: 2, 
+          gap: {xs:0,md:1} 
+        }}
+      >
+        {description && (
+          <MuiTooltip 
+            title={description} 
+            arrow 
+            placement="top"
+            enterTouchDelay={0} 
+          >
+            <IconButton size="small" sx={{ mb:{xs:3,md:0} }}>
+              <InfoOutlined fontSize="small" sx={{ color: 'text.secondary', opacity: 0.7 }} />
+            </IconButton>
+          </MuiTooltip>
+        )}
+        <Typography variant="h6" sx={{ fontWeight: 700, textAlign: 'center' }}>
+          {title}
+        </Typography>
 
+        
+      </Box>
 
-      <PieChart width={510} height={325}>
-        <Pie
-          dataKey="value"
-          data={data}
-          cx="50%"
-          cy="50%"
-          outerRadius={95}
-          label={(entry) => `${entry.value}%`}
-          stroke="none"              
-          animationDuration={700}
-          
-        >
-          {data.map((entry, index) => (
-            <Cell
-              key={index}
-              fill={COLORS[index % COLORS.length]}
-              style={{ filter: "drop-shadow(0px 2px 5px rgba(0,0,0,0.1))" }}
-            />
-          ))}
-        </Pie>
+      <Box sx={{ width: "100%", height: 380, minWidth: { md: '340px' }, position: "relative" }}>
+        
+        {!hasData && (
+          <Box
+            sx={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              textAlign: "center",
+              zIndex: 10,
+              pointerEvents: "none" 
+            }}
+          >
+            <Typography variant="body2" sx={{ fontWeight: 700, color: "#9e9e9e" }}>
+              No Data Available
+            </Typography>
+          </Box>
+        )}
 
-        <Tooltip content={<CustomTooltip />} />
-        <Legend 
-        layout="vertical" 
-        verticalAlign="middle" 
-        align="right"
-        wrapperStyle={{ paddingLeft: "20px" }}/>
-      </PieChart>
+        <ResponsiveContainer width="100%" height="100%">
+          <PieChart>
+            <Pie
+              data={chartData}
+              dataKey="value"
+              cx="50%"
+              cy="50%"
+              outerRadius={isMobile ? 90 : 95}
+              innerRadius={hasData ? 0 : 70} 
+              
+              label={hasData ? (entry) => `${entry.value}%` : false}
+              labelLine={hasData}
+              stroke="none"
+              isAnimationActive={hasData}
+            >
+              {chartData.map((entry, index) => (
+                <Cell
+                  key={index}
+                  fill={chartColors[index % chartColors.length]}
+                  style={{ 
+                    filter: hasData ? "drop-shadow(0px 2px 5px rgba(0,0,0,0.1))" : "none",
+                    cursor: hasData ? "pointer" : "default"
+                  }}
+                />
+              ))}
+            </Pie>
+
+            {hasData && <RechartsTooltip content={<CustomTooltip />} />}
+            
+            {hasData && (
+              <Legend
+                layout={isMobile ? "horizontal" : "vertical"}
+                verticalAlign={isMobile ? "bottom" : "middle"}
+                align={isMobile ? "center" : "right"}
+                wrapperStyle={isMobile ? { paddingTop: "20px" } : { paddingLeft: "20px" }}
+              />
+            )}
+          </PieChart>
+        </ResponsiveContainer>
+      </Box>
     </Paper>
   );
 };

@@ -4,9 +4,10 @@ const expenseUrl = "http://localhost:8080/api/transaction/expense";
 const earningUrl = "http://localhost:8080/api/transaction/earning";
 
 const TransactionExpenseApi = async (values)=> {
+    const userId = sessionStorage.getItem('userId');
     const response = await axios.post(expenseUrl,values,{
         params:{
-            userId:13,
+            userId:userId,
             type:"EXPENSE"
         }
     });
@@ -14,9 +15,10 @@ const TransactionExpenseApi = async (values)=> {
 }
 
 const TransactionEarningApi = async (values)=> {
+    const userId = sessionStorage.getItem('userId');
     const response = await axios.post(earningUrl,values,{
         params:{
-            userId:13,
+            userId:userId,
             type:"INCOME"
         }
     });

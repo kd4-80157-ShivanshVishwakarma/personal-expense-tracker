@@ -12,6 +12,10 @@ import {
 } from "@mui/material";
 import { Formik } from "formik";
 import * as Yup from "yup";
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import dayjs from 'dayjs';
 import {ProfileGetApi,ProfileUpdateApi} from "../api/ProfileApi";
 import ChangePassword from "../features/auth/ChangePassword";
 import { toast } from "react-toastify";
@@ -70,8 +74,8 @@ const UpdateProfile = () => {
         display: "flex",
         justifyContent: "center",
         background: "#fff",
-        py: 6,
-        px: 2,
+        py:{xs:4,md:6,lg:6} ,
+        px:{xs:0,md:2,lg:2}  ,
       }}>
       <Card
         sx={{
@@ -114,8 +118,8 @@ const UpdateProfile = () => {
         </Box>
 
         {/* INNER CONTENT */}
-        <Box sx={{ p: 4, pt: 5 }}>
-           <Typography variant="h5" sx={{ fontWeight: 700, my: 2, paddingLeft:3 }}>
+        <Box sx={{ p: 2, pt: 5 }}>
+           <Typography variant="h5" sx={{ fontWeight: 700, my: 2, paddingLeft:{xs:0,md:0,lg:3}, textAlign:{xs:"center",md:"center",lg:'left'} }}>
                 Manage Profile
             </Typography>
 
@@ -149,7 +153,7 @@ const UpdateProfile = () => {
                   {/* EDIT PROFILE */}
                 <Typography
                   variant="h6"
-                  sx={{ fontWeight: 700, my: 4, display: "flex", justifyContent: "center" }}
+                  sx={{ fontWeight: 700, my: 4,mt:{xs:0}, display: "flex", justifyContent: "center" }}
                 >
                   Edit Profile
                 </Typography>
@@ -207,20 +211,27 @@ const UpdateProfile = () => {
 
                     {/* DOB */}
                     <Grid item xs={12} md={6}>
-                      <TextField
-                        fullWidth
-                        size="small"
-                        label="Date of Birth"
-                        name="dob"
-                        type="date"
-                        InputLabelProps={{ shrink: true }}
-                        value={values.dob}
-                        onChange={handleChange}
-                        disabled={!isEditing}
-                        error={touched.dob && Boolean(errors.dob)}
-                        helperText={touched.dob && errors.dob}
-                        sx={{ width: "222px" }}
-                      />
+                      <LocalizationProvider dateAdapter={AdapterDayjs}>
+                        <DatePicker
+                          label="Date of Birth"
+                          format="YYYY-MM-DD"
+                          disabled={!isEditing}
+                          value={values.dob ? dayjs(values.dob) : null}
+                          onChange={(newValue) => {
+                            const formattedDate = newValue ? newValue.format('YYYY-MM-DD') : "";
+                            setFieldValue("dob", formattedDate);
+                          }}
+                          sx={{mx:{xs:-3},ml:{xs:0}}}
+                          slotProps={{
+                            textField: {
+                              fullWidth: true,
+                              size: "small",
+                              error: touched.dob && Boolean(errors.dob),
+                              helperText: touched.dob && errors.dob,
+                            }
+                          }}
+                        />
+                      </LocalizationProvider>
                     </Grid>
                   </Grid>
                 </Box>
@@ -232,7 +243,7 @@ const UpdateProfile = () => {
                         type="submit"
                         variant="contained"
                         color="success"
-                        sx={{ mt: 3, width: "150px", borderRadius: "30px",fontSize: "12px",fontWeight: 600,}}
+                        sx={{ mt: 3, width: {xs:"110px",md:'130px',lg:"140px"}, borderRadius: "30px",fontSize: {xs:"10px",md:"12px"},fontWeight: 600,py:{xs:0.5,md:1}}}
                       >
                         Save Changes
                       </Button>
@@ -240,8 +251,8 @@ const UpdateProfile = () => {
                       <Button
                         variant="contained"
                         color="error"
-                        sx={{ mt: 3, width: "120px", borderRadius: "30px",fontWeight: 600,
-                          fontSize: "12px",ml:2 }}
+                        sx={{ mt: 3, width: {xs:"110px",md:'130px',lg:"140px"}, borderRadius: "30px",fontWeight: 600,py:{xs:0.5,md:1},
+                          fontSize: {xs:"10px",md:"12px"},ml:2 }}
                         onClick={() => setIsEditing(false)}
                       >
                         Cancel
@@ -253,7 +264,7 @@ const UpdateProfile = () => {
                       <Button
                         variant="contained"
                         color="success"
-                        sx={{ mt: 3, width: "140px", borderRadius: "30px",fontWeight: 600,
+                        sx={{ mt: 3, width: {xs:"130px",md:'130px',lg:"140px"}, borderRadius: "30px",fontWeight: 600,py:{xs:1},
                           fontSize: "12px", }}
                         onClick={() => setIsEditing(true)}
                       >
@@ -276,7 +287,7 @@ const UpdateProfile = () => {
               ></Box>
 
               {/* ACCOUNT SECURITY SECTION */}
-              <Typography variant="h5" sx={{ fontWeight: 700, mb: 2,paddingLeft:3 }}>
+              <Typography variant="h5" sx={{ fontWeight: 700, mb: 2, paddingLeft:{xs:0,md:0,lg:3}, textAlign:{xs:"center",md:"center",lg:'left'} }}>
                 Account Security
               </Typography>
 

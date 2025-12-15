@@ -6,7 +6,6 @@ import com.ets.expenseTracker.entities.User;
 public interface AccountService {
     ResponseDTO<User> createUser(UserDTO request);
     ResponseDTO<UserAuthResponseDTO> login(LoginDTO request);
-
     ResponseDTO<Object> forgotPassword(String request);
     ResponseDTO<User> resetPassword(ResetPasswordDTO request,Long id);
     ResponseDTO<User> updateName(Long userId, UpdateNameDTO request);
@@ -15,4 +14,3 @@ public interface AccountService {
     ResponseDTO<UserResponseDTO>  getUserById(Long userId);
     ResponseGenericDTO changePasswordById(Long userId,String oldPassword,String newPassword);
 }
-

@@ -11,6 +11,10 @@ import {
   IconButton,
   AlertTitle
 } from "@mui/material";
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import dayjs from 'dayjs';
 import CloseIcon from '@mui/icons-material/Close';
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
@@ -156,10 +160,8 @@ const ExpenseForm = () => {
 
           <Box sx={{ height: "1px", background: "#e0e0e0", my: 4 }} />
 
-          {/* Grid Container starts here */}
           <Grid container spacing={5}>
             
-            {/* ROW 1: Title & Category */}
             <Grid item xs={12} sm={6}>
               <TextField
               required
@@ -173,7 +175,7 @@ const ExpenseForm = () => {
                 error={touched.title && Boolean(errors.title)}
                 helperText={touched.title && errors.title}
                 sx={{width:"16rem",'& .MuiFilledInput-root': {
-                        backgroundColor: '#f9f1f19c',
+                        backgroundColor: '#fbfafa90',
                         }}}
               />
             </Grid>
@@ -191,7 +193,7 @@ const ExpenseForm = () => {
                 error={touched.categoryId && Boolean(errors.categoryId)}
                 helperText={touched.categoryId && errors.categoryId}
                 sx={{width:"16rem",'& .MuiFilledInput-root': {
-                        backgroundColor: '#f9f1f19c',
+                        backgroundColor: '#fbfafa90',
                         }}}
               >
 
@@ -214,7 +216,7 @@ const ExpenseForm = () => {
                 onChange={handleChange}
                 multiline
                 sx={{width:"16rem",'& .MuiFilledInput-root': {
-                        backgroundColor: '#f9f1f19c',
+                        backgroundColor: '#fbfafa90',
                         }}}
               />
             </Grid>
@@ -241,31 +243,38 @@ const ExpenseForm = () => {
                   inputLabel: { shrink: true },
                 }}
                 sx={{width:"16rem",'& .MuiFilledInput-root': {
-                        backgroundColor: '#f9f1f19c',
+                        backgroundColor: '#fbfafa90',
                         }}}
               />
             </Grid>
 
             <Grid item xs={12} sm={6}>
-              <TextField
-              required
-                fullWidth
-                size="small"
-                variant="filled"
-                type="date"
-                label="Date"
-                name="date"
-                value={values.date}
-                onChange={handleChange}
-                InputLabelProps={{ shrink: true }}
-                error={touched.date && Boolean(errors.date)}
-                helperText={touched.date && errors.date}
-                sx={{width:"16rem",
-                    '& .MuiFilledInput-root': {
-                        backgroundColor: '#f9f1f19c',
-                        }
-                }}
-              />
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <DatePicker
+                  label="Date"
+                  format="DD/MM/YYYY" 
+                  value={values.date ? dayjs(values.date) : null}
+                  name="date"
+                  onChange={(newValue) => {
+                    const formattedDate = newValue ? newValue.format('YYYY-MM-DD') : '';
+                    setFieldValue("date", formattedDate);
+                  }}
+                  sx={{
+                    backgroundColor:"white"
+                  }}
+                  slotProps={{
+                    textField: {
+                      required: true,
+                      fullWidth: true,
+                      size: "small",
+                      variant: "filled", 
+                      error: touched.date && Boolean(errors.date),
+                      helperText: touched.date && errors.date,
+                      
+                    }
+                  }}
+                />
+              </LocalizationProvider>
             </Grid>
 
             {/* ROW 4: Receipt Upload (Full Width) */}
@@ -366,7 +375,7 @@ const EarningsForm = () => {
       validationSchema={EarningsSchema}
       onSubmit={handleSubmit}
     >
-      {({ values, errors, touched, handleChange }) => (
+      {({ values, errors, touched, handleChange,setFieldValue }) => (
         <Form>
           <Typography variant="h5" sx={{ mb: 3, display: "flex", justifyContent: "center", fontWeight:700 }}>
             Earning Entry
@@ -391,7 +400,7 @@ const EarningsForm = () => {
                 error={touched.title && Boolean(errors.title)}
                 helperText={touched.title && errors.title}
                 sx={{width:"16rem",'& .MuiFilledInput-root': {
-                        backgroundColor: '#f9f1f19c',
+                        backgroundColor: '#fbfafa90',
                         }}}
               />
             </Grid>
@@ -409,7 +418,7 @@ const EarningsForm = () => {
                 error={touched.categoryId && Boolean(errors.categoryId)}
                 helperText={touched.categoryId && errors.categoryId}
                 sx={{width:"16rem",'& .MuiFilledInput-root': {
-                        backgroundColor: '#f9f1f19c',
+                        backgroundColor: '#fbfafa90',
                 }}}
               >
 
@@ -432,7 +441,7 @@ const EarningsForm = () => {
                 onChange={handleChange}
                 multiline
                 sx={{width:"16rem",'& .MuiFilledInput-root': {
-                        backgroundColor: '#f9f1f19c',
+                        backgroundColor: '#fbfafa90',
                 }}}
               />
             </Grid>
@@ -459,31 +468,38 @@ const EarningsForm = () => {
                   inputLabel: { shrink: true },
                 }}
                 sx={{width:"16rem",'& .MuiFilledInput-root': {
-                        backgroundColor: '#f9f1f19c',
+                        backgroundColor: '#fbfafa90',
                         }}}
               />
             </Grid>
 
-            <Grid item xs={12} sm={6}>
-              <TextField
-              required
-                fullWidth
-                size="small"
-                variant="filled"
-                type="date"
-                label="Date"
-                name="date"
-                value={values.date}
-                onChange={handleChange}
-                InputLabelProps={{ shrink: true }}
-                error={touched.date && Boolean(errors.date)}
-                helperText={touched.date && errors.date}
-                sx={{width:"16rem",
-                    '& .MuiFilledInput-root': {
-                        backgroundColor: '#f9f1f19c',
-                }
-                }}
-              />
+             <Grid item xs={12} sm={6}>
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <DatePicker
+                  label="Date"
+                  format="DD/MM/YYYY" 
+                  value={values.date ? dayjs(values.date) : null}
+                  name="date"
+                  onChange={(newValue) => {
+                    const formattedDate = newValue ? newValue.format('YYYY-MM-DD') : '';
+                    setFieldValue("date", formattedDate);
+                  }}
+                  sx={{
+                    backgroundColor:"white"
+                  }}
+                  slotProps={{
+                    textField: {
+                      required: true,
+                      fullWidth: true,
+                      size: "small",
+                      variant: "filled", 
+                      error: touched.date && Boolean(errors.date),
+                      helperText: touched.date && errors.date,
+                      
+                    }
+                  }}
+                />
+              </LocalizationProvider>
             </Grid>
             </Grid>
 
@@ -499,7 +515,7 @@ const EarningsForm = () => {
             </Box>
 
              {/* ================= PROMOTIONAL BUDGET ALERT ================= */}
-            <Box sx={{ mb: 3, display: 'flex', justifyContent: 'center' }}>
+            <Box sx={{ mb: 3, display: 'flex', justifyContent: 'center', }}>
               <Alert 
                 severity="info" 
                 variant="outlined" 
@@ -509,9 +525,9 @@ const EarningsForm = () => {
                   borderStyle: 'dashed',
                   transition: '0.3s',
                   '&:hover': { 
-                    bgcolor: 'rgba(2, 136, 209, 0.08)', // subtle blue hover
+                    bgcolor: 'rgba(2, 136, 209, 0.08)', 
                     borderColor: 'info.main',
-                    transform: 'translateY(-2px)' // slight lift effect
+                    transform: 'translateY(-2px)' 
                   }
                 }}
                 onClick={() => navigate('/budget')}

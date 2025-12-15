@@ -11,7 +11,7 @@ const Home =()=> {
         container
         spacing={2}
         sx={{
-          px: 6,
+          px:  {xs:2,md:6},
           py: 10,
           alignItems: "center",
         }}
@@ -39,7 +39,6 @@ const Home =()=> {
           </Button>
         </Grid>
 
-        {/* RIGHT SIDE — FEATURE LIST */}
         <Grid
           item
           xs={12}
@@ -61,8 +60,8 @@ const Home =()=> {
           <Box sx={{ display: "flex", gap: 2, alignItems: "flex-start" }}>
             <Box
               sx={{
-                width: 45,
-                height: 45,
+                width: {xs:'130px',md:45},
+                height: {xs:'35px',md:45},
                 borderRadius: "50%",
                 background: "#00A884",
                 display: "flex",
@@ -87,8 +86,8 @@ const Home =()=> {
 
             <Box
               sx={{
-                width: 45,
-                height: 45,
+                width: {xs:'130px',md:45},
+                height: {xs:'35px',md:45},
                 borderRadius: "50%",
                 background: "#FF6F69",
                 display: "flex",
@@ -96,7 +95,7 @@ const Home =()=> {
                 justifyContent: "center",
                 color: "white",
                 fontWeight: 700,
-                fontSize: "20px",
+                // fontSize: "12px",
               }}
             >
               📊

@@ -13,17 +13,22 @@ const Dashboard = () => {
         justifyContent: "center",
         width: "100%",
         mt: 3,
+        
       }}
     >
       <Paper
         elevation={2}
         sx={{
+          boxShadow: {
+            xs: "none",
+            md: "0px 4px 10px rgba(0,0,0,0.12)",
+          },
           borderRadius: 6,
           background: "#ffffff",
-          border: "1px solid #e6e6e6",
-          width: "92%",
+          // border: "1px solid #e6e6e6",
+          width: "100%",
           py: 4,
-          px: 5,
+          px: 4,
         }}
       >
         {/* Header */}

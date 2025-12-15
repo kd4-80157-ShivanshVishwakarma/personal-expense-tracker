@@ -9,12 +9,13 @@ import {
   Container,
   Avatar,
 } from "@mui/material";
+import { TrendingUp, TrendingDown, AccountBalanceWallet } from "@mui/icons-material";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import expenseSummary from "../api/DashboardApi";
 
 const summarySchema = Yup.object({
-  monthlySummary: Yup.object({
+  monthlySummary: Yup.object({ 
     monthlyIncome: Yup.number().required(),
     monthlyExpense: Yup.number().required(),
     monthlyBalance: Yup.number().required(),
@@ -94,21 +95,24 @@ const ExpenseSummary = () => {
 
             {/* TOGGLE BUTTON */}
             <ToggleButtonGroup
+              size="small"
               value={mode}
               exclusive
               onChange={handleModeChange}
               sx={{
-                mb: 4,
+                mt:2,mb:8,
                 background: "#fff",
-                borderRadius: 2,
-                p: 0.5,
-                boxShadow: "0 4px 12px rgba(0,0,0,0.05)",
+                borderRadius:5,
+                border:'none',
+                boxShadow: "0 4px 4px rgba(0,0,0,0.05)",
               }}
             >
               <ToggleButton
+              size="small"
                 value="monthly"
                 sx={{
                   px: 5,
+                  borderRadius: 5,
                   py: 1.5,
                   fontWeight: 600,
                   "&.Mui-selected": { background: "#00A884", color: "#fff" },
@@ -118,9 +122,11 @@ const ExpenseSummary = () => {
               </ToggleButton>
 
               <ToggleButton
+              size="small"
                 value="lifetime"
                 sx={{
                   px: 5,
+                  borderRadius: 5,
                   py: 1.5,
                   fontWeight: 600,
                   "&.Mui-selected": { background: "#00A884", color: "#fff" },
@@ -131,7 +137,7 @@ const ExpenseSummary = () => {
             </ToggleButtonGroup>
 
             {/* GRID CARDS */}
-            <Grid container spacing={10}>
+            <Grid container spacing={{xs:5,md:5,lg:10}}>
               
               {/* INCOME CARD */}
               <Grid item xs={12} sm={6} md={4}>
@@ -144,9 +150,16 @@ const ExpenseSummary = () => {
                     width: "18.5rem",
                   }}
                 >
-                  <Box sx={{ display: "flex", gap: 2 }}>
-                    <Avatar sx={{ width: 60, height: 60, fontSize: 34, bgcolor: "#e9ffe9" }}>
-                      📈
+                  <Box sx={{ display: "flex", gap: 3 }}>
+                    <Avatar 
+                      sx={{ 
+                        width: 55, 
+                        height: 55, 
+                        bgcolor: "#e9ffe9", // Light Green Background
+                        color: "#2e7d32"    // Dark Green Icon
+                      }}
+                    >
+                      <TrendingUp sx={{ fontSize: 32 }} />
                     </Avatar>
                     <Box>
                       <Typography variant="h6" sx={{ fontWeight: 700 }}>
@@ -177,9 +190,15 @@ const ExpenseSummary = () => {
                     width: "18.5rem",
                   }}
                 >
-                  <Box sx={{ display: "flex", gap: 2 }}>
-                    <Avatar sx={{ width: 60, height: 60, fontSize: 34, bgcolor: "#ffecec" }}>
-                      💸
+                  <Box sx={{ display: "flex", gap: 3 }}>
+                    <Avatar 
+                      sx={{ 
+                        width: 55, 
+                        height: 55, 
+                        bgcolor: "#ffecec", // Light Red Background
+                        color: "#d32f2f"    // Dark Red Icon
+                      }}>
+                      <TrendingDown sx={{ fontSize: 32 }} />
                     </Avatar>
                     <Box>
                       <Typography variant="h6" sx={{ fontWeight: 700 }}>
@@ -209,9 +228,16 @@ const ExpenseSummary = () => {
                     width: "18.5rem",
                   }}
                 >
-                  <Box sx={{ display: "flex", gap: 2 }}>
-                    <Avatar sx={{ width: 60, height: 60, fontSize: 34, bgcolor: "#e8f3ff" }}>
-                      💰
+                  <Box sx={{ display: "flex", gap: 3.5 }}>
+                    <Avatar 
+                      sx={{ 
+                        width: 55, 
+                        height: 55, 
+                        bgcolor: values.monthlySummary.monthlyBalance < 0 ? "#ffecec" : "#e8f3ff", 
+                        color: values.monthlySummary.monthlyBalance < 0 ? "#d32f2f" : "#1976d2"
+                      }}
+                    >
+                      <AccountBalanceWallet sx={{ fontSize: 32 }} />
                     </Avatar>
                     <Box>
                       <Typography variant="h6" sx={{ fontWeight: 700 }}>

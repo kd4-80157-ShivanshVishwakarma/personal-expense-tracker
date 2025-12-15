@@ -22,7 +22,8 @@ import {
   Tooltip,
   Alert,
   Fade,
-  Stack
+  Stack,
+  Divider
 } from '@mui/material';
 import {
   AddAlert,
@@ -128,7 +129,7 @@ const BudgetAlert = () => {
 
     return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-    <Container maxWidth="md" sx={{ py: 4 }}>
+    <Container maxWidth="md" sx={{ py: 4,px:{xs:0,sm:0} }}>
 
         {/* NOTIFICATION */}
         {notification && (
@@ -143,17 +144,18 @@ const BudgetAlert = () => {
         </Fade>
         )}
 
-        {/* ===================== FORM SECTION ===================== */}
-        <Paper sx={{ p: 3, borderRadius: 3, mb: 4 }}>
+        <Paper sx={{ p: 3, borderRadius: 3, mb: 2,boxShadow:{xs:"none",sm:"none",md:"0px 4px 10px rgba(0,0,0,0.12)"} }}>
 
-        <Box display="flex" alignItems="center" gap={2} mb={3}>
-            <Box sx={{ p: 1.5, borderRadius: 2, bgcolor: 'primary.main', color: '#fff' }}>
+        <Box display="flex" alignItems="center" gap={2}  sx={{mb:{xs:3  ,sm:5,md:3,lg:3},justifyContent:{xs:"center",sm:"center",md:"center",lg:"left"}}}>
+            <Box sx={{ p:{xs:1,sm:1,md:1,lg:1.5}, borderRadius: 2, bgcolor: 'primary.main', color: '#fff' }}>
             <AddAlert />
             </Box>
             <Typography variant="h6" fontWeight={700}>
             Set Budget Alert
             </Typography>
         </Box>
+
+        <Divider sx={{mb:2}}/>
 
         <Formik
             initialValues={{
@@ -169,7 +171,6 @@ const BudgetAlert = () => {
             <Form>
 
                 <Stack spacing={4}>
-
                 <Box>
                     <Typography variant='h6' fontWeight='bold' mb={2}>
                     <DateRange fontSize="small" /> Duration
@@ -276,7 +277,7 @@ const BudgetAlert = () => {
                         variant="contained"
                         startIcon={<Save />}
                         size="large"
-                        sx={{ py: 1.5, width:'30%',borderRadius:8 }}
+                        sx={{ py: 1.5, width:{xs:'60%',sm:'60%',md:'30%'},borderRadius:8 }}
                     >
                         Create Alert
                     </Button>
@@ -288,8 +289,9 @@ const BudgetAlert = () => {
         </Formik>
         </Paper>
 
-        {/* ===================== TABLE SECTION ===================== */}
-        <Paper sx={{ borderRadius: 3, mb: 3 }}>
+        <Divider sx={{my:{xs:0,sm:0,md:5}}}/>
+
+        <Paper sx={{ borderRadius: 3, mb: 3,boxShadow:{xs:"none",sm:"none",md:"0px 4px 10px rgba(0,0,0,0.12)"} }}>
 
         <Box p={3}>
             <Typography variant="h6" fontWeight={700}>
@@ -301,44 +303,63 @@ const BudgetAlert = () => {
             <Table>
             <TableHead>
                 <TableRow >
-                <TableCell sx={{fontWeight:'bold'}}>Date Range</TableCell>
-                <TableCell sx={{fontWeight:'bold'}}>Limit</TableCell>
-                <TableCell sx={{fontWeight:'bold'}}>Status</TableCell>
-                <TableCell align="right" sx={{fontWeight:'bold'}}>Actions</TableCell>
+                <TableCell sx={{fontWeight:'bold',bgcolor:'#eae9e9ff'}}>Date Range</TableCell>
+                <TableCell sx={{fontWeight:'bold',bgcolor:'#eae9e9ff'}}>Limit</TableCell>
+                <TableCell sx={{fontWeight:'bold',bgcolor:'#eae9e9ff'}}>Status</TableCell>
+                <TableCell align="right" sx={{fontWeight:'bold',bgcolor:'#eae9e9ff'}}>Actions</TableCell>
                 </TableRow>
             </TableHead>
 
             <TableBody>
-                {budgets.map((row) => (
-                <TableRow key={row.id}>
-                    <TableCell>
-                    {row.startDate} → {row.endDate}
-                    </TableCell>
+                {budgets && budgets.length > 0 ? (
+                    budgets.map((row) => (
+                    <TableRow key={row.id}>
+                        <TableCell>
+                        {row.startDate} → {row.endDate}
+                        </TableCell>
 
-                    <TableCell>
-                    ₹{row.limitAmount}
-                    </TableCell>
-                    <TableCell>
+                        <TableCell>₹{row.limitAmount}</TableCell>
+                        
+                        <TableCell>
+                        <Chip
+                            label={row.status ? "ACTIVE" : "INACTIVE"}
+                            color={row.status ? "success" : "default"}
+                            size="small" 
+                        />
+                        </TableCell>
 
-                    <Chip
-                        label={row.status ? "ACTIVE":"INACTIVE"}
-                        color={row.status ? "success" : "default"}
-                    />
+                        <TableCell align="right">
+                        <Tooltip title="Delete">
+                            <IconButton color="error" onClick={() => handleDelete(row.id)}>
+                            <Delete />
+                            </IconButton>
+                        </Tooltip>
+                        </TableCell>
+                    </TableRow>
+                    ))
+                ) : (
+                    <TableRow>
+                    <TableCell colSpan={4} align="center">
+                        <Box
+                        sx={{
+                            py: 5,
+                            display: "flex",
+                            flexDirection: "column",
+                            alignItems: "center",
+                            color: "text.secondary",
+                        }}
+                        >
+                        <Typography variant="body1" sx={{ fontWeight: 500 }}>
+                            No budgets found
+                        </Typography>
+                        <Typography variant="caption">
+                            Create a budget to start tracking your limits.
+                        </Typography>
+                        </Box>
                     </TableCell>
-
-                    <TableCell align="right">
-                    {/* <Tooltip title="Edit">
-                        <IconButton><Edit /></IconButton>
-                    </Tooltip> */}
-                    <Tooltip title="Delete">
-                        <IconButton color="error" onClick={() => handleDelete(row.id)}>
-                        <Delete />
-                        </IconButton>
-                    </Tooltip>
-                    </TableCell>
-                </TableRow>
-                ))}
-            </TableBody>
+                    </TableRow>
+                )}
+                </TableBody>
 
             </Table>
         </TableContainer>

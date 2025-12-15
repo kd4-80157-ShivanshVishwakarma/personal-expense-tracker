@@ -6,18 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="db8bf483-a383-4511-86aa-75acaafb1ab4" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ets/expenseTracker/controllers/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ets/expenseTracker/controllers/AccountController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ets/expenseTracker/controllers/TransactionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ets/expenseTracker/controllers/TransactionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ets/expenseTracker/dtos/OtpDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ets/expenseTracker/dtos/OtpDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ets/expenseTracker/dtos/UserAuthResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ets/expenseTracker/dtos/UserAuthResponseDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ets/expenseTracker/repositories/OtpDetailRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ets/expenseTracker/repositories/OtpDetailRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ets/expenseTracker/services/AccountServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ets/expenseTracker/services/AccountServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ets/expenseTracker/services/OtpDetailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ets/expenseTracker/services/OtpDetailService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ets/expenseTracker/services/OtpDetailServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ets/expenseTracker/services/OtpDetailServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ets/expenseTracker/services/TransactionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ets/expenseTracker/services/TransactionService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ets/expenseTracker/services/TransactionServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ets/expenseTracker/services/TransactionServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../expense-tracker-frontend/src/api/ForgotPasswordApi.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../expense-tracker-frontend/src/api/ForgotPasswordApi.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../expense-tracker-frontend/src/routes/AppRoutes.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../expense-tracker-frontend/src/routes/AppRoutes.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ets/expenseTracker/services/AccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ets/expenseTracker/services/AccountService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

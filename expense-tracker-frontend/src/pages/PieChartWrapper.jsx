@@ -54,21 +54,21 @@ const PieChartWrapper = () => {
     },[])
 
   return (
-        <Box sx={{ mt: 6, px: 6 }}>
-          <Typography variant="h4" sx={{ fontWeight: 700, mt: 1 }}>
+        <Box sx={{ mt: 6, px: {xs:0,sm:6,md:6,lg:6} }}>
+          <Typography variant="h4" sx={{ fontWeight: 700, mt: 1,ml:{xs:2,sm:2,md:2,lg:0} }}>
             Expense & Income Insights
           </Typography>
 
-          <Typography sx={{ color: "#666", marginTop: 1, marginBottom:3, paddingLeft:1}}>
+          <Typography sx={{ color: "#666", marginTop: 1, marginBottom:3, paddingLeft:1,ml:{xs:1,sm:1,md:2,lg:0}}}>
            Understand your financial habits to make smarter decisions.
           </Typography>
-          <Grid container spacing={16}>
+          <Grid container spacing={24}>
             
             {/* Pie Chart 1 */}
             <Grid item xs={12} md={6}>
               <PieChartCard
+                padding={3.2}
                 title="Monthly Spending Breakdown"
-                description="A detailed look at how you allocate funds across specific categories like Food, Shopping, and Bills."
                 data={CategoryWiseData}
               />
             </Grid>
@@ -76,8 +76,9 @@ const PieChartWrapper = () => {
             {/* Pie Chart 2 */}
             <Grid item xs={12} md={6}>
               <PieChartCard
-                title="Needs vs. Wants Analysis"
-                description="Essential includes Food, Rent, Bills, & Travel. Everything else is considered Non-Essential."
+                padding={1}
+                title="Essential Non-Essential Expense Breakdown"
+                description="Essential Items: Food,Bills,Rent,Travel. Non-Essential Items: Shopping,Beverage,Others"
                 data={ExpenseSummaryData}
               />
             </Grid>
