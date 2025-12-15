@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const CLOUD_NAME = "dxh2gfplk";
-const UPLOAD_PRESET = "mtxudsvf";
+const CLOUD_NAME = import.meta.env.VITE_CLOUD_NAME;
+const UPLOAD_PRESET =import.meta.env.VITE_UPLOAD_PRESET;
 
 export const uploadImageToCloudinary = async (file) => {
   const formData = new FormData();

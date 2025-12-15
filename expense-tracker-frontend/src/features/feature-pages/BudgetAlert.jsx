@@ -232,7 +232,7 @@ const BudgetAlert = () => {
                         value={values.limitAmount}
                         onChange={(e, v) => setFieldValue("limitAmount", v)}
                         min={0}
-                        max={20000}
+                        max={50000}
                         step={100}
                     />
 
