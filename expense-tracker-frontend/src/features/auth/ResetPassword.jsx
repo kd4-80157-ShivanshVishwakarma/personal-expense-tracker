@@ -16,10 +16,8 @@ const ResetPassword = () => {
   const navigate = useNavigate();
   const location = useLocation();
   
-  // Retrieve the email passed from the Previous Page (Forgot Password)
   const email = location.state?.email;
 
-  // Safety Check: If user tries to access this page directly without an email, kick them back
   useEffect(() => {
     if (!email) {
         toast.error("Session expired. Please try again.");
@@ -36,7 +34,6 @@ const ResetPassword = () => {
 
   const handleSubmit = async (values) => {
     try {
-      // We need to send the Email + New Password to the backend
       const payload = {
         email: email, 
         password: values.password,
