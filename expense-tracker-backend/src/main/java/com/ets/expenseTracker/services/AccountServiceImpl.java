@@ -83,11 +83,14 @@ public class AccountServiceImpl implements AccountService {
 
 
     @Override
-    public ResponseDTO<User> resetPassword(ResetPasswordDTO request,Long id) {
+    public ResponseDTO<User> resetPassword(ResetPasswordDTO request) {
         try{
-            User user = accRepository.findById(id).get();
+            User user = accRepository.findByEmail(request.getEmail());
             if(user!=null) {
                 if(request.getPassword().equals(request.getConfirmPassword())) {
+                    if(user.getPassword().equals(request.getConfirmPassword())) {
+                        return new ResponseDTO<>(false,"Password can't be same as the previous password",null);
+                    }
                     user.setPassword(request.getPassword());
                     User usr = accRepository.save(user);
                     if(usr!=null) {

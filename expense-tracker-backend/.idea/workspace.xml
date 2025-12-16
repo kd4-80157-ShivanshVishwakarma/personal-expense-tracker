@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="db8bf483-a383-4511-86aa-75acaafb1ab4" name="Changes" comment="" />
+    <list default="true" id="db8bf483-a383-4511-86aa-75acaafb1ab4" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ets/expenseTracker/controllers/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ets/expenseTracker/controllers/AccountController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ets/expenseTracker/dtos/ResetPasswordDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ets/expenseTracker/dtos/ResetPasswordDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ets/expenseTracker/services/AccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ets/expenseTracker/services/AccountService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ets/expenseTracker/services/AccountServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ets/expenseTracker/services/AccountServiceImpl.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

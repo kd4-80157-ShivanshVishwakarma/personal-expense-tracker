@@ -7,7 +7,7 @@ public interface AccountService {
     ResponseGenericDTO createUser(UserDTO request);
     ResponseDTO<UserAuthResponseDTO> login(LoginDTO request);
     ResponseDTO<Object> forgotPassword(String request);
-    ResponseDTO<User> resetPassword(ResetPasswordDTO request,Long id);
+    ResponseDTO<User> resetPassword(ResetPasswordDTO request);
     ResponseDTO<User> updateName(Long userId, UpdateNameDTO request);
     ResponseDTO<User> updateProfile(Long userId, UpdateRequestDTO request);
     boolean removeAccount(Long userId);
