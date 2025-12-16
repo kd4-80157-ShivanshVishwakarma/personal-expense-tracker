@@ -9,7 +9,8 @@ import {
   Alert,
   Collapse,
   IconButton,
-  AlertTitle
+  AlertTitle,
+  CircularProgress
 } from "@mui/material";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -60,7 +61,7 @@ const EarningsSchema = Yup.object({
 
 const ExpenseForm = () => {
 
-  const[loading,setLoading] = useState(true);
+  const[loading,setLoading] = useState(false);
   const navigate = useNavigate();
   const [budgetWarning, setBudgetWarning] = useState(null);
 
@@ -304,8 +305,13 @@ const ExpenseForm = () => {
                 variant="contained"
                 color="success"
                 sx={{ my: 4, py: 1.2, borderRadius: 5,width:"200px",fontWeight:700 }}
+                disabled={loading}
               >
-                Add Expense
+                {loading ? (
+                <CircularProgress size={24} color="inherit" />
+                ) : (
+                "Add Expense"
+                )}
               </Button>
             </Box>
 
@@ -345,7 +351,7 @@ const ExpenseForm = () => {
 
 const EarningsForm = () => {
 
-  const[Loading,setLoading] = useState(true);
+  const[loading,setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit= async (values,{resetForm})=>{
@@ -522,7 +528,11 @@ const EarningsForm = () => {
                 color="success"
                 sx={{ my: 4, py: 1.2, borderRadius: 5,width:"200px",fontWeight:700 }}
               >
-                Add Earning
+                {loading ? (
+                <CircularProgress size={24} color="inherit" />
+                ) : (
+                "Add Earning"
+                )}
               </Button>
             </Box>
 

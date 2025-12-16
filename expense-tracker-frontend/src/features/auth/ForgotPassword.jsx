@@ -38,7 +38,6 @@ const ForgotPassword = () => {
     try {
       setLoading(true);
       if (!otpSent) {
-        // Step 1: Send OTP
         const payload = { email: values.email };
         const response = await ForgotPasswordApi(payload);
         
