@@ -32,7 +32,7 @@ const TransactionPage = () => {
           background: "#ffffff",
           border: { xs: "none", md: "1px solid #e6e6e6" },
           width: { xs: "94%", sm: "85%", md: "70%", lg: "50%" },
-          py: { xs: 3, md: 5 }, // Increased top padding slightly for the header
+          py: { xs: 3, md: 5 },
           px: { xs: 2, md: 4 },
           mt: { xs: 5, md: 0 },
         }}
@@ -130,6 +130,8 @@ const TransactionPage = () => {
           elevation={3}
           sx={{
             px: { xs: 9, sm: 9, md: 9, lg: 12 },
+            display:'flex',
+            justifyContent:'center',
             borderRadius: 3,
           }}
         >

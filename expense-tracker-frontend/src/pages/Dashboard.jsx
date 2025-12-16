@@ -25,10 +25,9 @@ const Dashboard = () => {
           },
           borderRadius: 6,
           background: "#ffffff",
-          // border: "1px solid #e6e6e6",
           width: "100%",
-          py: 4,
-          px: 4,
+          py: {xs:2,sm:2,md:4},
+          px: {xs:2,sm:2,md:4},
         }}
       >
         {/* Header */}

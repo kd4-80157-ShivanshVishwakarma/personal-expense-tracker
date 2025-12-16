@@ -163,14 +163,13 @@ const formatYAxis = (tickItem) => {
 };
 
 const BarChartCard = ({ title, data }) => {
-  // Check if data exists and is not empty
   const hasData = data && data.length > 0;
 
   return (
     <Paper
       elevation={3}
       sx={{
-        p: { xs: 1.5, md: 6 },
+        p: { xs: 0.5, md: 6 },
         borderRadius: 5,
         width: { xs: "100%", sm: "100%", md: "90%" },
         display: "flex",
@@ -186,7 +185,7 @@ const BarChartCard = ({ title, data }) => {
         {title}
       </Typography>
 
-      <Box sx={{ width: "100%", height: 400 }}>
+      <Box sx={{ width: "100%", height: 380 }}>
         {hasData ? (
           // RENDER CHART IF DATA EXISTS
           <ResponsiveContainer width="100%" height="100%">

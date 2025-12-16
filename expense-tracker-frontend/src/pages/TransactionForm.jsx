@@ -127,12 +127,15 @@ const ExpenseForm = () => {
     >
       {({ values, errors, touched, handleChange, setFieldValue }) => (
         <Form>
-          <Typography variant="h5" sx={{ mb: 3, display: "flex", justifyContent: "center", fontWeight:700 }}>
+          <Typography variant="h5" sx={{   display: "flex", justifyContent: "center", fontWeight:700 }}>
             Expense Entry
+          </Typography>
+          <Typography sx={{my:2,display: "flex", justifyContent: "center",}}>
+            Enter the details of your spending
           </Typography>
 
           {/* ================= 3. UI: DYNAMIC BUDGET WARNING ================= */}
-          {/* This only appears if the user crosses 80% or 100% */}
+  
           <Collapse in={Boolean(budgetWarning)}>
             <Box sx={{ mb: 3 }}>
                 <Alert
@@ -172,6 +175,7 @@ const ExpenseForm = () => {
                 name="title"
                 value={values.title}
                 onChange={handleChange}
+                placeholder="e.g. Lunch at Dominos"
                 error={touched.title && Boolean(errors.title)}
                 helperText={touched.title && errors.title}
                 sx={{width:"16rem",'& .MuiFilledInput-root': {
@@ -214,6 +218,7 @@ const ExpenseForm = () => {
                 name="description"
                 value={values.description}
                 onChange={handleChange}
+                placeholder="e.g. Ordered Pizza and Taco"
                 multiline
                 sx={{width:"16rem",'& .MuiFilledInput-root': {
                         backgroundColor: '#fbfafa90',
@@ -232,6 +237,7 @@ const ExpenseForm = () => {
                 name="amount"
                 value={values.amount}
                 onChange={handleChange}
+                placeholder="e.g. 1000"
                 error={touched.amount && Boolean(errors.amount)}
                 helperText={touched.amount && errors.amount}
                 slotProps={{
@@ -377,14 +383,17 @@ const EarningsForm = () => {
     >
       {({ values, errors, touched, handleChange,setFieldValue }) => (
         <Form>
-          <Typography variant="h5" sx={{ mb: 3, display: "flex", justifyContent: "center", fontWeight:700 }}>
+          <Typography variant="h5" sx={{ display: "flex", justifyContent: "center", fontWeight:700 }}>
             Earning Entry
           </Typography>
-
+          <Typography sx={{my:2,display: "flex", justifyContent: "center",}}>
+            Enter the details of your earnings
+          </Typography>
+          
           <Box sx={{ height: "1px", background: "#e0e0e0", my: 4 }} />
 
           {/* Grid Container starts here */}
-          <Grid container spacing={5}>
+          <Grid container spacing={5} >
             
             {/* ROW 1: Title & Category */}
             <Grid item xs={12} sm={6}>
@@ -397,6 +406,7 @@ const EarningsForm = () => {
                 name="title"
                 value={values.title}
                 onChange={handleChange}
+                placeholder="e.g. October Salary"
                 error={touched.title && Boolean(errors.title)}
                 helperText={touched.title && errors.title}
                 sx={{width:"16rem",'& .MuiFilledInput-root': {
@@ -439,6 +449,7 @@ const EarningsForm = () => {
                 name="description"
                 value={values.description}
                 onChange={handleChange}
+                placeholder="e.g. Salary Credited"
                 multiline
                 sx={{width:"16rem",'& .MuiFilledInput-root': {
                         backgroundColor: '#fbfafa90',
@@ -457,6 +468,7 @@ const EarningsForm = () => {
                 name="amount"
                 value={values.amount}
                 onChange={handleChange}
+                placeholder="e.g. 60000"
                 error={touched.amount && Boolean(errors.amount)}
                 helperText={touched.amount && errors.amount}
                 slotProps={{

@@ -53,8 +53,8 @@ const ExpenseSummary = () => {
       setLoading(true);
       const response = await expenseSummary();
       if (response.data.success) {
-         summarySchema.validate(response.data.data); // validate using Yup
-         setInitialValues(response.data.data); // store in formik
+         summarySchema.validate(response.data.data);
+         setInitialValues(response.data.data); 
       }
     } catch (err) {
       console.error("ERROR:", err);
@@ -144,7 +144,7 @@ const ExpenseSummary = () => {
                 <Paper
                   elevation={3}
                   sx={{
-                    p: 3,
+                    p: {xs:1,md:3},
                     borderRadius: 5,
                     minHeight: "8rem",
                     width: "18.5rem",
@@ -184,7 +184,7 @@ const ExpenseSummary = () => {
                 <Paper
                   elevation={3}
                   sx={{
-                    p: 3,
+                    p: {xs:1,md:3},
                     borderRadius: 5,
                     minHeight: "8rem",
                     width: "18.5rem",
@@ -222,7 +222,7 @@ const ExpenseSummary = () => {
                 <Paper
                   elevation={3}
                   sx={{
-                    p: 3,
+                    p: {xs:1,md:3},
                     borderRadius: 5,
                     minHeight: "8rem",
                     width: "18.5rem",
