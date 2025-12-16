@@ -153,7 +153,8 @@ const Auth = ({ flag }) => {
   return (
     <Box
       sx={{
-        minHeight: "100vh",
+        mt: "100px",
+        mb:'150px',
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
