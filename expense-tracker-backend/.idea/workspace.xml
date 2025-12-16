@@ -4,17 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="db8bf483-a383-4511-86aa-75acaafb1ab4" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../expense-tracker-frontend/src/components/BarChart.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../expense-tracker-frontend/src/components/BarChart.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../expense-tracker-frontend/src/components/PieChart.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../expense-tracker-frontend/src/components/PieChart.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../expense-tracker-frontend/src/pages/BarChartWrapper.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../expense-tracker-frontend/src/pages/BarChartWrapper.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../expense-tracker-frontend/src/pages/Dashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../expense-tracker-frontend/src/pages/Dashboard.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../expense-tracker-frontend/src/pages/ExpenseSummary.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../expense-tracker-frontend/src/pages/ExpenseSummary.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../expense-tracker-frontend/src/pages/PieChartWrapper.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../expense-tracker-frontend/src/pages/PieChartWrapper.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../expense-tracker-frontend/src/pages/Transaction.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../expense-tracker-frontend/src/pages/Transaction.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../expense-tracker-frontend/src/pages/TransactionForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../expense-tracker-frontend/src/pages/TransactionForm.jsx" afterDir="false" />
-    </list>
+    <list default="true" id="db8bf483-a383-4511-86aa-75acaafb1ab4" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

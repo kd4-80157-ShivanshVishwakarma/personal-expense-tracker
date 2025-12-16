@@ -169,7 +169,7 @@ const PieChartWrapper = () => {
         <Grid item xs={12} md={6}>
           <PieChartCard
             title="Essential vs Non-Essential"
-            description="Essential Items: Food, Bills, Rent. Non-Essential: Shopping, etc."
+            description="Essential Items: Food, Bills, Rent, Travel. Non-Essential Items: Shopping, Beverage, Others"
             data={ExpenseSummaryData}
           />
         </Grid>
