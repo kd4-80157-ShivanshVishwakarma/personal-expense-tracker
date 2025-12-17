@@ -23,7 +23,8 @@ import {
   Alert,
   Fade,
   Stack,
-  Divider
+  Divider,
+  CircularProgress
 } from '@mui/material';
 import {
   AddAlert,
@@ -55,7 +56,7 @@ const BudgetAlert = () => {
 
 
   const handleDelete = async(id) => {
-    try{
+        try{
             setLoading(true);
             const response = await removeBudgetApi(id);
             if(response.data.success){
@@ -72,6 +73,9 @@ const BudgetAlert = () => {
             setLoading(false);
             console.error("ERROR:", error);
             toast.error(error.response.data.message)
+        }
+        finally{
+            setLoading(false);
         }
   };
 
@@ -279,7 +283,11 @@ const BudgetAlert = () => {
                         size="large"
                         sx={{ py: 1.5, width:{xs:'60%',sm:'60%',md:'30%'},borderRadius:8 }}
                     >
-                        Create Alert
+                        {loading ? (
+                            <CircularProgress size={24} color="inherit" />
+                            ) : (
+                            "Create Alert"
+                        )}
                     </Button>
                 </Box>
 
