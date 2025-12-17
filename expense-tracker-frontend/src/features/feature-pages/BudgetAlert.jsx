@@ -104,12 +104,15 @@ const BudgetAlert = () => {
             console.error("ERROR:", error);
             toast.error(error.response.data.message)
         }
+        finally{
+            setLoading(false);
+        }
+
     }
 
 
   const FetchBudgets = async()=>{
         try{
-            setLoading(true);
             const response = await fetchBudgetApi();
             if(response.data.success){
                 console.log(response.data);
@@ -282,6 +285,7 @@ const BudgetAlert = () => {
                         startIcon={<Save />}
                         size="large"
                         sx={{ py: 1.5, width:{xs:'60%',sm:'60%',md:'30%'},borderRadius:8 }}
+                        disabled={loading}
                     >
                         {loading ? (
                             <CircularProgress size={24} color="inherit" />
