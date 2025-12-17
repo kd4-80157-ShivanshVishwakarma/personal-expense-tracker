@@ -54,7 +54,7 @@ public class AccountController {
         return ResponseEntity.internalServerError().body(response);
     }
 
-    @PutMapping("/reset-password")
+    @PostMapping("/reset-password")
     public ResponseEntity<?> resetPassword(@RequestBody ResetPasswordDTO request) {
         ResponseDTO<User> response = accountService.resetPassword(request);
         if(response.isSuccess()){
